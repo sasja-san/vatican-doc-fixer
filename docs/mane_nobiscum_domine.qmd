@@ -1,12 +1,12 @@
 ---
-title: |
+title: MANE NOBISCUM DOMINE
+subtitle: |
     | APOSTOLIC LETTER
     | ***MANE NOBISCUM DOMINE***
     | OF THE HOLY FATHER
     | **JOHN PAUL II**
     | TO THE BISHOPS, CLERGY AND FAITHFUL
     | FOR THE YEAR OF THE EUCHARIST
-subtitle: "October 2004--October 2005"
 ---
 
  
