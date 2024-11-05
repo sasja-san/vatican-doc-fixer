@@ -1,0 +1,124 @@
+reference-location: margin
+citation-location: margin
+tbl-cap-location: margin
+cap-location: margin
+
+# lang: sv
+notes-after-punctuation: true
+
+pdf-engine: xelatex
+latex-auto-mk: true
+latex-max-runs: 4
+latex-clean: true
+keep-tex: false
+
+highlight-style: kate
+
+
+
+format:
+    pdf:
+      documentclass: scrartcl
+      papersize: a4
+      geometry:
+        # - showframe
+        - left=20.0mm
+        - textwidth=97.0mm
+        - marginparsep=7.7mm
+        - marginparwidth=70.3mm
+        - top=20mm
+        - bottom=20mm
+        - footskip=10mm
+        # 
+        # textwithmarginpar should be
+        # 97.0 + 7.7 + 70.3 = 175mm
+      number-sections: false
+      colorlinks: true
+      toc: true
+
+      mainfont: "ETbb"
+      mainfontoptions:
+        - Path=fonts/
+        - Extension=.otf
+        - UprightFont=*-Regular
+        - BoldFont=*-Bold
+        - ItalicFont=*-Italic
+        - BoldItalicFont=*-BoldItalic
+
+      monofont: "SourceCodePro"
+      monofontoptions:
+        - Path=fonts/
+        - Extension=.ttf
+        - UprightFont=*-Medium
+        - BoldFont=*-Bold
+        - ItalicFont=*-MediumItalic
+        - BoldItalicFont=*-BoldItalic
+
+      sansfont: "cabin"
+      sansfontoptions:
+        - Path=fonts/
+        - Extension=.ttf
+        - UprightFont=*.medium
+        - BoldFont=*.bold
+        - ItalicFont=*.italic
+        - BoldItalicFont=*.bold-italic
+
+      include-in-header:
+        - text: |
+            %
+            %                   REMOVE ALL HYPHENATIONS 
+            \usepackage[none]{hyphenat}
+            %
+            %                   MICROTYPE GIVES NICENESS++
+            \PassOptionsToPackage{protrusion=true}{microtype}
+            \usepackage{microtype}
+            %
+            %                     COLUMNS (probably no longer used)
+            \newcommand{\hideFromPandoc}[1]{#1}
+            \hideFromPandoc{
+              \let\Begin\begin
+              \let\End\end
+            }
+            \usepackage{multicol}
+            \setlength{\columnsep}{10mm}
+            %
+            %                     INVERT MARKER, SIMPLE INDEX AND OTHER CUSTOM COMMANDS
+            \usepackage{amsfonts}
+            \newcommand{\inv}[1]{$\overline{\textnormal{#1}}$}
+            \newcommand{\ix}[2]{$\textnormal{#1}_{\textnormal{#2}}$} % indexed vars
+            \newcommand{\ixx}[3]{$\textnormal{#1}_{\textnormal{#2}_\textnormal{#3}}$}
+            \newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+            %
+            %                     EMPTY LINES FOR NOTES/ANSWERS
+            % https://texblog.org/2012/06/25/adding-lines-for-taking-handwritten-notes-in-latex/ 
+            \usepackage{pgffor, ifthen}
+            %
+            % args=[extra_vspace=16pt]{number_of_lines}{line_width}
+            %      [         #1      ]{      #2       }{    #3    }
+            \newcommand{\notes}[3][16pt]{
+                \foreach \n in {1,...,#2}
+                {
+                    \ifthenelse{\equal{\n}{#2}}% on last line?
+                    {
+                      \noindent\rule{#3}{0.5pt}\par
+                    }
+                    {
+                      \noindent\rule{#3}{0.5pt}\vspace{#1}\newline
+                    }
+                }
+            }
+            \newcommand{\ansline}[1]{%
+              \makebox[#1]{\hrulefill}}
+            \usepackage{tabto}
+            %
+            %                     FONT SETTING OVERRIDES
+            % Reversing quartos config. See scrguide-en.pdf, ch 4.9
+            % \setkomafont{title}{\normalfont\bfseries\huge}
+            % \setkomafont{subtitle}{\normalfont\bfseries\itshape\Large}
+            % \setkomafont{section}{\normalfont\bfseries\itshape\Large}
+            % \setkomafont{subsection}{\normalfont\bfseries\itshape\large}
+            \setkomafont{descriptionlabel}{\normalfont\bfseries}
+            %
+            %                     PAGE NUMBER PLACEMENT
+            \usepackage[ilines]{scrlayer-scrpage}
+            \setfootwidth{textwithmarginpar} % found in scrpage2 docs (obsolete)
