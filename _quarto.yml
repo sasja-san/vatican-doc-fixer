@@ -26,9 +26,9 @@ format:
         - textwidth=97.0mm
         - marginparsep=7.7mm
         - marginparwidth=70.3mm
-        - top=20mm
-        - bottom=20mm
-        - footskip=10mm
+        - top=25mm
+        - bottom=15mm
+        - footskip=7mm
         # 
         # textwithmarginpar should be
         # 97.0 + 7.7 + 70.3 = 175mm
